@@ -1,6 +1,16 @@
 const express = require("express");
+const dbConnect = require("./dbConnect");
+const routes = require("./routes/routes");
+
+dbConnect();
+
 const app = express();
 
-app.listen(8080, () => {
-  console.log("Server is up running on 8080...");
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", routes);
+
+app.listen(5000, () => {
+  console.log("Server is up running on 5000");
 });
